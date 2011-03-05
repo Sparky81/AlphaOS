@@ -160,20 +160,16 @@ A20Check:
 
 
 A20Success:
-  mov byte [ds:0B8000h], 'S'      ; Move the ASCII-code of 'P' into first video memory
-  mov byte [ds:0B8001h], 0Bh      ; Assign a color code
-  mov byte [ds:0B8002h], 'u'      ; Move the ASCII-code of 'P' into first video memory
-  mov byte [ds:0B8003h], 0Bh      ; Assign a color code
-  mov byte [ds:0B8004h], 'c'      ; Move the ASCII-code of 'P' into first video memory
-  mov byte [ds:0B8005h], 0Bh      ; Assign a color code
-  mov byte [ds:0B8006h], 'c'      ; Move the ASCII-code of 'P' into first video memory
-  mov byte [ds:0B8007h], 0Bh      ; Assign a color code
-  mov byte [ds:0B8008h], 'e'      ; Move the ASCII-code of 'P' into first video memory
-  mov byte [ds:0B8009h], 0Bh      ; Assign a color code
-  mov byte [ds:0B80F0h], 's'      ; Move the ASCII-code of 'P' into first video memory
-  mov byte [ds:0B80F1h], 0Bh      ; Assign a color code
-  mov byte [ds:0B80F2h], 's'      ; Move the ASCII-code of 'P' into first video memory
-  mov byte [ds:0B80F3h], 0Bh      ; Assign a color code
+  mov byte [ds:0B8000h], 'W'   
+  mov byte [ds:0B8001h], 0Bh  
+  mov byte [ds:0B8002h], 'o'    
+  mov byte [ds:0B8003h], 0Bh   
+  mov byte [ds:0B8004h], 'r'      
+  mov byte [ds:0B8005h], 0Bh      
+  mov byte [ds:0B8006h], 'k'      
+  mov byte [ds:0B8007h], 0Bh   
+  mov byte [ds:0B8008h], 's'      
+  mov byte [ds:0B8009h], 0Bh      
 
 
 TIMES 510 - ($ - $$) db 0

@@ -1,8 +1,0 @@
-[BITS 32]
-
-[global start]
-[extern k_main] ; this is in the c file
-
-start:
-  CALL k_main
-  JMP $

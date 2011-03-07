@@ -78,6 +78,5 @@ Boot db 'Booting into the kernel...',13,10,0
 TIMES 510-$+start DB 0
 DB 055h, 0AAh
 
-space:
 
 

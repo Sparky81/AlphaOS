@@ -1,9 +1,11 @@
 all: 
+	@mkdir -p build
 	@echo "\033[1mCompiling Bootloader...\033[0m"
 	@nasm src/boot/boot.asm -o build/boot.bin
 	@echo "\033[1mDone!\033[0m"
 	
 boot:
+	@mkdir -p build
 	@echo "\033[1mCompiling Bootloader...\033[0m"
 	@nasm src/boot/boot.asm -o build/boot.bin
 

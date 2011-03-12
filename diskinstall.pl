@@ -21,11 +21,7 @@ print "Okay, you said: $disklocation\n";
 sub AreYouSure {
   print "Are you sure (y/n)? ";
   chomp($sure = <STDIN>);
-  if ($sure eq '') { 
-    print "You *must* say y for yes or n for no\n";
-    &AreYouSure; 
-   }
-  elsif ($sure eq 'y') {
+  if ($sure eq 'y') {
     system("dd if=build/boot.bin of=$disklocation bs=512 count=1");
     #system("dd if=build/boot2.bin of=$disklocation bs=512 count=2");
     print "Installed!\n";
@@ -33,5 +29,9 @@ sub AreYouSure {
   elsif ($sure eq 'n') { 
     print "Exiting.\n";
     exit(1);
+  }
+  else {
+    print "You *must* say y for yes or n for no\n";
+    &AreYouSure;
   }
 };

@@ -6,12 +6,14 @@
 use warnings;
 
 system("clear");
-print "Disk Installer for the Alpha OS\n";
-print "Version 1.0 Beta\n";
-print "Must be running as root to install to a disk!\n\n";
-print "Location of the disk to install to:\n";
-print "For example: \"/dev/sdc\" \n";
-print "> ";
+print( 
+  "Disk Installer for the Alpha OS\n",
+  "Version 1.0 Beta\n",
+  "Must be running as root to install to a disk!\n\n",
+  "Location of the disk to install to:\n",
+  "For example: \"/dev/sdc\" \n",
+  "> "
+);
 chomp($disklocation = <STDIN>);
 print "Okay, you said: $disklocation\n";
 &AreYouSure;

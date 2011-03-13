@@ -37,16 +37,12 @@ FileSystem: 	        DB "FAT12   "
 
 
 BootMain:
-  XOR AX, AX
-  MOV DS, AX
-  MOV ES, AX
-  MOV SS, AX
-  MOV SP, 0x7C00
-  MOV [DriveNumber], DL
   MOV AX, 03                       ; Clears the screen
   INT 10h                          
   MOV SI, Welcome                  ; Prints welcome text
   CALL PrintString
+
+JMP $
 
 KeyBoardHandle:
   MOV AH, 00h
@@ -58,14 +54,7 @@ KeyBoardHandle:
 EnterKeyPressed:
   MOV SI, Boot
   CALL PrintString
-;  CLI
-;  XOR AX, AX
-;  MOV DS, AX
-;  LGDT [GDTDESC]
-;  MOV EAX, CR0
-;  OR EAX,1
-;  MOV CR0,EAX
-;  JMP $
+
 
 PrintString:
   next_character:

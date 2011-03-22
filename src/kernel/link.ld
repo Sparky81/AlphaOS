@@ -2,7 +2,7 @@
 /*            Correct place.  */
 /*            Original file taken from Bran's Kernel Development */
 /*            tutorials: http://www.osdever.net/bkerndev/index.php. */
-
+OUTPUT_FORMAT("elf32-i386")
 ENTRY(start)
 SECTIONS
 {

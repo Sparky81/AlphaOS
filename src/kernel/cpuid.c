@@ -32,7 +32,6 @@
 /* You need to include a file with fairly(ish) compliant printf prototype, Decimal and String support like %s and %d and this is truely all you need! */
 //#include <stdio.h> /* for printf(); */
 
-#include "includes/cpuid.h"
 
 #include "includes/video.h"
 
@@ -131,7 +130,7 @@ int do_intel(void) {
 	stepping = eax & 0xf;
 	reserved = eax >> 14;
 	signature = eax;
-	printf("Type %d - "); printf(type);
+	printf("Type: "); printf(type);
 	switch(type) {
 		case 0:
 		printf("Original OEM");
@@ -167,9 +166,9 @@ int do_intel(void) {
 	printf("\n");
 	if(family == 15) {
 		extended_family = (eax >> 20) & 0xff;
-		printf("Extended family %d\n"); printf(extended_family);
+		printf("Extended family: "); printf(extended_family);
 	}
-	printf("Model %d - "); printf(model);
+	printf("Model: "); printf(model);
 	switch(family) {
 		case 3:
 		break;
@@ -263,7 +262,7 @@ int do_intel(void) {
 		}
 		printf("\n");
 	} else if(brand > 0) {
-		printf("Brand %d - "); printf(brand);
+		printf("Brand: "); printf(brand);
 		if(brand < 0x18) {
 			if(signature == 0x000006B1 || signature == 0x00000F13) {
 				printf("%s\n"); printf(Intel_Other[brand]);
@@ -274,7 +273,8 @@ int do_intel(void) {
 			printf("Reserved\n");
 		}
 	}
-	printf("Stepping: %d Reserved: %d\n"); printf(stepping); printf(reserved);
+	printf("Stepping: "); printf(stepping); printf("\n");
+	printf("Reserved: "); printf(reserved); printf("\n");
 	return 0;
 }
 

@@ -16,3 +16,7 @@ kernel:
 	@nasm $(ASFLAGS) src/kernel/kernel_start.asm -o build/objects/boot.o
 	@ld $(LDFLAGS) -o build/Kernel.bin $(SOURCES)
 	@echo "\033[1mDone!\033[0m"
+
+clean:
+	@rm -rf build/
+	@echo "\033[1mDone!\033[0m"

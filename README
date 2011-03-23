@@ -14,16 +14,25 @@ Contact Information:
 
 
 
+I. About
+  AlphaOS is an Operating System originally created by Robert Schofield and 
+  Matthew Carey, as a way to experiment with our knowledge in the different
+  programming languages, like Assembly, C, and C++.  It currently is in the
+  very early stages of development and does not have a bootloader yet that 
+  works with a disk. This will change in the coming months, as we will 
+  create our own bootloader, and allow the usage of grub with it as well.
 
-AlphaOS is an Operating System originally created by Robert Schofield and 
-Matthew Carey, as a way to experiment with our knowledge in the different
-programming languages, like Assembly, C, and C++.  It currently is in the
-very early stages of development and does not have a bootloader yet that 
-works with a disk. This will change in the coming months, as we will 
-create our own bootloader, and allow the usage of grub with it as well.
+  To build the kernel:
+    make kernel
 
-To build the kernel:
-  make kernel
+  To test it out:
+    qemu -kernel build/Kernel.bin
 
-To test it out:
-  qemu -kernel build/Kernel.bin
+II. List of C Commands:
+
+  printf("Text to Print")    ...     Prints the text in the parenthesis with a black background.
+  
+  print("Text to Print", Background Color, Foreground Color)     
+			     ...    Prints the text in parenthesis with the designated background
+			            and foreground colors. These are both numbers. 
+				     

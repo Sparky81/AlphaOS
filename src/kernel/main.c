@@ -5,12 +5,35 @@
  */
 
 #include "includes/video.h"
-#include "cpuid.c"
+// #include "cpuid.c"
 
-int main(struct multiboot *mboot_ptr)
+int main(void)
 {
+    init_descriptor_tables();
     clear();
-    printf("AlphaOS Kernel\nVersion 1.0\nCopyright (c) 2011, Robert Schofield and Matthew Carey\n\n");
-    detect_cpu();
+    printf("Loading Dependencies...\n");
+    printf("   Initializing GDT...");
+
+    printf("   Initializing IDT...");
+
+    asm volatile("int $0x3");
+    asm volatile("int $0x4");
+    asm volatile("sti");
+
+    printf(
+      "AlphaOS Kernel\n"
+      "Version 1.0\n"
+      "Copyright (c) 2011, Robert Schofield and Matthew Carey.\n"
+      "All rights reserved.\n\n"
+    ); 
+
+    init_timer();
+    //clear();
+    /*printf(
+      "AlphaOS Kernel\n"
+      "Version 1.0\n"
+      "Copyright (c) 2011, Robert Schofield and Matthew Carey.\n"
+      "All rights reserved.\n\n"); */
+    // detect_cpu();
     return 0;
 }

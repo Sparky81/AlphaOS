@@ -1,7 +1,7 @@
-;
-; boot.s -- Kernel start location. Also defines multiboot header.
-;           Based on Bran's kernel development tutorial file start.asm
-;
+; AlphaOS - Kernel Start
+; Version 1.0
+; Copyright (c) 2011, Robert Schofield and Matthew Carey
+; All rights reserved.
 
 MBOOT_PAGE_ALIGN    equ 1<<0    ; Load kernel and modules on a page boundary
 MBOOT_MEM_INFO      equ 1<<1    ; Provide your kernel with memory info
@@ -45,25 +45,4 @@ start:
                                 ; executing whatever rubbish is in the memory
                                 ; after our kernel!
 
-[GLOBAL gdtflush]
-[EXTERN gp]
 
-gdtflush:
-    lgdt [gp]        ; Load the GDT with our '_gp' which is a special pointer
-    mov ax, 0x10      ; 0x10 is the offset in the GDT to our data segment
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
-    mov ss, ax
-    jmp 0x08:flush2   ; 0x08 is the offset to our code segment: Far jump!
-flush2:
-    ret               ; Returns back to the C code!
-
-; Loads the IDT defined in '_idtp' into the processor.
-; This is declared in C as 'extern void idt_load();'
-[global idt_load]
-[extern idtp]
-idt_load:
-    lidt [idtp]
-    ret

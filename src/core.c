@@ -1,5 +1,8 @@
-// common.c -- Defines some global functions.
-//             
+/* AlphaOS v1.0
+ * core.c - defines some global functions
+ * Copyright (c) 2011, Robert Schofield and Matthew Carey
+ * All rights reserved.
+ */
 
 #include "include/core.h"
 

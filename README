@@ -23,17 +23,7 @@ I. About
   create our own bootloader, and allow the usage of grub with it as well.
 
   To build the kernel:
-    make kernel
+    make 
 
   To test it out:
     qemu -kernel build/Kernel.bin
-
-II. List of C Commands:
-
-  printf("Text to Print")    ...     Prints the text in the parenthesis with a black background.
-  
-  print("Text to Print", Background Color, Foreground Color)     
-			     ...    Prints the text in parenthesis with the designated background
-			            and foreground colors. These are both numbers. 
-				     
- 

@@ -9,7 +9,10 @@
 // Write a byte out to the specified port.
 void outb(u16int port, u8int value)
 {
-    __asm__ __volatile__ ("outb %1, %0" : : "dN" (port), "a" (value));
+    __asm__ __volatile__ ("outb %1, %0" : : "dN" (port), "a" (value)); 
+/*
+   __asm__ and __volatile__ is the correct way to inline assembly here and the followning functions
+*/
 }
 
 u8int inb(u16int port)
@@ -91,6 +94,8 @@ char *strcat(char *dest, const char *src)
     for( ; *src; *dest++ = *src++);
     return dest;
 }
+
+/* The correctness of this code is questionable */
 
 int strlen(char *str)
 {

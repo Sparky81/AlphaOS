@@ -15,14 +15,14 @@ void outb(u16int port, u8int value)
 u8int inb(u16int port)
 {
     u8int ret;
-    asm volatile("inb %1, %0" : "=a" (ret) : "dN" (port));
+    __asm__ __volatile__ ("inb %1, %0" : "=a" (ret) : "dN" (port));
     return ret;
 }
 
 u16int inw(u16int port)
 {
     u16int ret;
-    asm volatile ("inw %1, %0" : "=a" (ret) : "dN" (port));
+    __asm__ __volatile__ ("inw %1, %0" : "=a" (ret) : "dN" (port));
     return ret;
 }
 
@@ -33,16 +33,16 @@ void memcpy(u8int *dest, const u8int *src, u32int len)
    /* sp stands for source pointer and the (const char *) is a cast */ 
    char *dp = (char *)dest; /* destination pointer, cast */
    for( ; len != 0; len--) *dp++ = *sp++;
-   return dest;
+   //return dest;
 } 
 
 
 // Write len copies of val into dest.
 void memset(u8int *dest, u8int val, u32int len)
 {
-    const char *dp = (char *)dest;
+    char *dp = (char *)dest;
     for( ; len != 0; len--) *dp++ = val;
-    return dest;
+    //return dest;
 }
 
 // Compare two strings. Should return -1 if 
@@ -51,9 +51,9 @@ int strcmp(char *str1, char *str2)
 {
     int len[2] = {0, 0};
     int i = 0;
-    for( ; *str[i]; i++);
+    for( ; str1[i]; i++);
     len[0] = i;
-    for(i = 0 ; *str[i]; i++);
+    for(i = 0 ; str1[i]; i++);
     len[1] = i;
     if(len[0] < len[1])
     {
@@ -90,4 +90,11 @@ char *strcat(char *dest, const char *src)
     for( ; *dest; *dest++);
     for( ; *src; *dest++ = *src++);
     return dest;
+}
+
+int strlen(char *str)
+{
+    int i;
+    for(i = 0; *str; *str++) i++;
+    return i;
 }

@@ -15,4 +15,6 @@ void clear();
 
 void printf(char *c);
 
+void puts(char *c);
+
 #endif

@@ -10,9 +10,8 @@
 void outb(u16int port, u8int value)
 {
     __asm__ __volatile__ ("outb %1, %0" : : "dN" (port), "a" (value)); 
-/*
-   __asm__ and __volatile__ is the correct way to inline assembly here and the followning functions
-*/
+                         //The correct way for the ASM calls is 
+                         //prefixed and suffixed with double underscores
 }
 
 u8int inb(u16int port)
@@ -32,8 +31,7 @@ u16int inw(u16int port)
 // Copy len bytes from src to dest.
 void memcpy(u8int *dest, const u8int *src, u32int len)
 {
-   const char *sp = (const char *)src; 
-   /* sp stands for source pointer and the (const char *) is a cast */ 
+  const char *sp = (const char *)src; /* src pointer, cast */
    char *dp = (char *)dest; /* destination pointer, cast */
    for( ; len != 0; len--) *dp++ = *sp++;
    //return dest;
@@ -53,10 +51,10 @@ void memset(u8int *dest, u8int val, u32int len)
 int strcmp(char *str1, char *str2)
 {
     int len[2] = {0, 0};
-    int i = 0;
-    for( ; str1[i]; i++);
+    int i;
+    for(i = 0;str1[i];i++);
     len[0] = i;
-    for(i = 0 ; str1[i]; i++);
+    for(i = 0;str1[i];i++);
     len[1] = i;
     if(len[0] < len[1])
     {
@@ -90,9 +88,10 @@ char *strcpy(char *dest, const char *src)
 // the end of dest, and return dest.
 char *strcat(char *dest, const char *src)
 {
-    for( ; *dest; *dest++);
-    for( ; *src; *dest++ = *src++);
-    return dest;
+    char *save = dest;
+    for (; *dest; ++dest);
+    while ((*dest++ = *src++) != 0);
+    return(save);
 }
 
 /* The correctness of this code is questionable */

@@ -1,0 +1,14 @@
+
+.:|:.
+   I've made changes to /Makefile to correct the (attempted) use of coloring
+   in the echos. The issue was that it was not called with the -e flag for
+   echo. Now you may use @$(SAY) "\033[37mHello World!\033[0m". I've also added
+   this changelog, because I'm usually anxious to push anyway, so it's easier
+   to type here than in the commit message. As well as this file will be 
+   visible if I make multiple commits so that Robert doesn't have to
+   backtrack through them all to see my reasoning. This file does not have to
+   be put in .:|:. casing, it will be sort of a signatre of mine so you'll
+   know before even reading that I have made changes. 
+
+   1/1/11 - Matthew Carey
+.:|:.

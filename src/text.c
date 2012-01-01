@@ -220,3 +220,9 @@ void print(char *c)
 {
   printf(c);
 }
+
+void puts(char *c)
+{
+  print((char *)c);
+  print("\n");
+}

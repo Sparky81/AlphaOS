@@ -19,6 +19,13 @@ typedef          char  s8int;
 void outportb(u16int port, u8int value);
 u8int inportb(u16int port);
 u16int inportw(u16int port);
+void kmemcpy(u8int *dest, const u8int *src, u32int len);
+void kmemset(u8int *dest, u8int val, u32int len);
+int strcmp(char *str1, char *str2);
+char *strcpy(char *dest, const char *src);
+char *strcat(char *dest, const char *src);
+int strlen(char *str);
+
 
 /* This defines what the stack looks like after an ISR was running */
 struct regs

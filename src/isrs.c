@@ -4,7 +4,7 @@
 *
 *  Notes: No warranty expressed or implied. Use at own risk. */
 #include "include/core.h"
-
+#include "include/text.h"
 /* These are function prototypes for all of the exception
 *  handlers: The first 32 entries in the IDT are reserved
 *  by Intel, and are designed to service exceptions! */
@@ -93,7 +93,7 @@ void isrs_install()
 *  corresponds to each and every exception. We get the correct
 *  message by accessing like:
 *  exception_message[interrupt_number] */
-unsigned char *exception_messages[] =
+unsigned char *exception_messages[31] =
 {
     "Division By Zero",
     "Debug",
@@ -135,15 +135,15 @@ unsigned char *exception_messages[] =
 /* All of our Exception handling Interrupt Service Routines will
 *  point to this function. This will tell us what exception has
 *  happened! Right now, we simply halt the system by hitting an
-*  endless loop. All ISRs disable interrupts while they are being
+*  endless loop.All ISRs disable interrupts while they are being
 *  serviced as a 'locking' mechanism to prevent an IRQ from
 *  happening and messing up kernel data structures */
 void fault_handler(struct regs *r)
 {
     if (r->int_no < 32)
     {
-        kputs(exception_messages[r->int_no]);
-        kputs(" Exception. System Halted!\n");
+        kputs((char *)exception_messages[r->int_no]);
+        kputs("Exception. System Halted!\n");
         for (;;);
     }
 }

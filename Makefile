@@ -34,7 +34,7 @@ debug:
 	@gcc -c src/gdt.c -Wall $(C_FLAGS) -o $(OBJDIR)/gdt.o
 	@gcc -c src/idt.c -Wall $(C_FLAGS) -o $(OBJDIR)/idt.o
 	@gcc -c src/isrs.c -Wall $(C_FLAGS) -o $(OBJDIR)/isrs.o
-	@gcc -c srs/irq.c -Wall $(C_FLAGS) -o $(OBJDIR)/irq.o
+	@gcc -c src/irq.c -Wall $(C_FLAGS) -o $(OBJDIR)/irq.o
 	@nasm $(ASFLAGS) src/boot.asm -o $(OBJDIR)/boot.o
 	@ld $(LDFLAGS) -o build/Kernel.bin $(OBJECTS)
 	@$(SAY) "\033[1mDone!\033[0m"

@@ -126,6 +126,12 @@ void keyboard_handler(struct regs *r)
         {
             state++;
         }
+        else if ((char)kbdus[scancode] == '\b')
+        {
+            put(0x08);
+            put(' ');
+            put(0x08);
+        }
         else
         {
             if (state == 1)

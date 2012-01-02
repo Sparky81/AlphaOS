@@ -11,6 +11,7 @@
 #include "include/isrs.h"
 #include "include/irq.h"
 #include "include/pit.h"
+#include "include/keyboard.h"
 void show_intro(void);
 
 
@@ -23,6 +24,7 @@ int main(void)
   isrs_install();
   irq_install();
   timer_install();
+  keyboard_install();
   __asm__ __volatile__ ("sti");
   timer_wait(10);
   kputs("Hello world!");

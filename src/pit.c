@@ -1,5 +1,7 @@
 #include "include/core.h"
 #include "include/text.h"
+#include "include/irq.h"
+
 int timer_ticks = 0;
 
 void timer_phase(int hz)
@@ -13,10 +15,6 @@ void timer_phase(int hz)
 void timer_handler(struct regs *r)
 {
   timer_ticks++;
-  if (timer_ticks % 18 == 0)
-  {
-    kputs("One second has passed");
-  }
 }
 
 void timer_install()

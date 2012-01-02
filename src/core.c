@@ -7,21 +7,21 @@
 #include "include/core.h"
 
 // Write a byte out to the specified port.
-void outb(u16int port, u8int value)
+void outportb(u16int port, u8int value)
 {
     __asm__ __volatile__ ("outb %1, %0" : : "dN" (port), "a" (value)); 
                          //The correct way for the ASM calls is 
                          //prefixed and suffixed with double underscores
 }
 
-u8int inb(u16int port)
+u8int inportb(u16int port)
 {
     u8int ret;
     __asm__ __volatile__ ("inb %1, %0" : "=a" (ret) : "dN" (port));
     return ret;
 }
 
-u16int inw(u16int port)
+u16int inportw(u16int port)
 {
     u16int ret;
     __asm__ __volatile__ ("inw %1, %0" : "=a" (ret) : "dN" (port));
@@ -29,7 +29,7 @@ u16int inw(u16int port)
 }
 
 // Copy len bytes from src to dest.
-void memcpy(u8int *dest, const u8int *src, u32int len)
+void kmemcpy(u8int *dest, const u8int *src, u32int len)
 {
   const char *sp = (const char *)src; /* src pointer, cast */
    char *dp = (char *)dest; /* destination pointer, cast */
@@ -39,7 +39,7 @@ void memcpy(u8int *dest, const u8int *src, u32int len)
 
 
 // Write len copies of val into dest.
-void memset(u8int *dest, u8int val, u32int len)
+void kmemset(u8int *dest, u8int val, u32int len)
 {
     char *dp = (char *)dest;
     for( ; len != 0; len--) *dp++ = val;
@@ -99,6 +99,6 @@ char *strcat(char *dest, const char *src)
 int strlen(char *str)
 {
     int i;
-    for(i = 0; *str; *str++) i++;
+    for(i = 0; *str++; ) i++;
     return i;
 }

@@ -13,13 +13,15 @@ void put(char c);
 
 void clear();
 
-void printf(char *c);
+void kprintf(char *c);
 
-void puts(char *c);
+void kputs(char *c);
 
 void put_c(char c, u8int backColour, u8int foreColour);
 
-void printc(char *c, u8int bg, u8int fg);
+void print(char c);
+
+void kprintc(char *c, u8int bg, u8int fg);
 
 void error(char *c);
 

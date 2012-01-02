@@ -17,10 +17,10 @@ static void move_cursor()
 {
     // The screen is 80 characters wide...
     u16int cursorLocation = cursor_y * 80 + cursor_x;
-    outb(0x3D4, 14);                  // Tell the VGA board we are setting the high cursor byte.
-    outb(0x3D5, cursorLocation >> 8); // Send the high cursor byte.
-    outb(0x3D4, 15);                  // Tell the VGA board we are setting the low cursor byte.
-    outb(0x3D5, cursorLocation);      // Send the low cursor byte.
+    outportb(0x3D4, 14);                  // Tell the VGA board we are setting the high cursor byte.
+    outportb(0x3D5, cursorLocation >> 8); // Send the high cursor byte.
+    outportb(0x3D4, 15);                  // Tell the VGA board we are setting the low cursor byte.
+    outportb(0x3D5, cursorLocation);      // Send the low cursor byte.
 }
 
 // Scrolls the text on the screen up by one line.
@@ -195,7 +195,7 @@ void clear()
 }
 
 // Outputs a null-terminated ASCII string to the monitor.
-void printf(char *c)
+void kprintf(char *c)
 {
     int i = 0;
     while (c[i])
@@ -204,7 +204,7 @@ void printf(char *c)
     }
 }
 
-void printc(char *c, u8int bg, u8int fg)
+void kprintc(char *c, u8int bg, u8int fg)
 {
     int i = 0;
     while(c[i])
@@ -217,7 +217,7 @@ void monitor_write_hex(u32int n)
 {
     s32int tmp;
 
-    printf("0x");
+    kprintf("0x");
 
     char noZeroes = 1;
 
@@ -281,21 +281,21 @@ void monitor_write_dec(u32int n)
     {
         c2[i--] = c[j++];
     }
-    printf(c2);
+    kprintf(c2);
 }
 
-void print(char *c)
+void kprint(char *c)
 {
-  printf(c);
+  kprintf(c);
 }
 
-void puts(char *c)
+void kputs(char *c)
 {
-  print(c);
-  print("\n");
+  kprint(c);
+  kprint("\n");
 }
 
 void error(char *c)
 {
-  printc(c, BLACK, LIGHT_MAGENTA);
+  kprintc(c, BLACK, LIGHT_MAGENTA);
 }

@@ -1,4 +1,7 @@
 #include "include/core.h"
+#include "include/text.h"
+#include "include/colors.h"
+
 
 /* Defines a GDT entry. We say packed, because it prevents the
 *  compiler from doing things that it thinks is best: Prevent
@@ -53,6 +56,8 @@ void gdt_set_gate(int num, unsigned long base, unsigned long limit, unsigned cha
 *  new segment registers */
 void gdt_install()
 {
+    kprintc(":: Installing ", BLACK, LIGHT_RED);
+    kprintc("GDT\n", BLACK, LIGHT_CYAN);
     /* Setup the GDT pointer and limit */
     gp.limit = (sizeof(struct gdt_entry) * 3) - 1;
     gp.base = (int)&gdt;

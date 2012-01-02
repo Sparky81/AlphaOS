@@ -1,5 +1,6 @@
 #include "include/core.h" 
-
+#include "include/text.h"
+#include "include/idt.h"
 /* These are own ISRs that point to our special IRQ handler
 *  instead of the regular 'fault_handler' function */
 extern void _irq0();
@@ -66,6 +67,9 @@ void irq_remap(void)
 *  is just like installing the exception handlers */
 void irq_install()
 {
+    kprintc(":: Installing ", BLACK, LIGHT_RED);
+    kprintc("IRQs\n", BLACK, LIGHT_CYAN);
+
     irq_remap();
 
     idt_set_gate(32, (unsigned)_irq0, 0x08, 0x8E);

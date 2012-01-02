@@ -1,5 +1,7 @@
 #include "include/core.h"
 #include "include/idt.h"
+#include "include/colors.h"
+#include "include/text.h"
 
 // Structure for an IDT entry.
 struct idt_entry
@@ -48,12 +50,14 @@ void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, uns
 /* Installs the IDT */
 void idt_install()
 {
+    kprintc(":: Installing ", BLACK, LIGHT_RED);
+    kprintc("IDT\n", BLACK, LIGHT_CYAN);
     /* Sets the special IDT pointer up, just like in 'gdt.c' */
     idtp.limit = (sizeof (struct idt_entry) * 256) - 1;
     idtp.base = (int)&idt;
 
     /* Clear out the entire IDT, initializing it to zeros */
-    kmemset(&idt, 0, sizeof(struct idt_entry) * 256);
+    kmemset((u8int *)&idt, 0, sizeof(struct idt_entry) * 256);
 
     /* Add any new ISRs to the IDT here using idt_set_gate */
 

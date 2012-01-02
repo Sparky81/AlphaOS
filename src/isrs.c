@@ -5,6 +5,9 @@
 *  Notes: No warranty expressed or implied. Use at own risk. */
 #include "include/core.h"
 #include "include/text.h"
+#include "include/colors.h"
+#include "include/gdt.h"
+#include "include/idt.h"
 /* These are function prototypes for all of the exception
 *  handlers: The first 32 entries in the IDT are reserved
 *  by Intel, and are designed to service exceptions! */
@@ -52,6 +55,9 @@ extern void _isr31();
 *  hex. */
 void isrs_install()
 {
+    kprintc(":: Installing ", BLACK, LIGHT_RED);
+    kprintc("ISRs\n", BLACK, LIGHT_CYAN);
+
     idt_set_gate(0, (unsigned)_isr0, 0x08, 0x8E);
     idt_set_gate(1, (unsigned)_isr1, 0x08, 0x8E);
     idt_set_gate(2, (unsigned)_isr2, 0x08, 0x8E);
@@ -93,7 +99,7 @@ void isrs_install()
 *  corresponds to each and every exception. We get the correct
 *  message by accessing like:
 *  exception_message[interrupt_number] */
-unsigned char *exception_messages[31] =
+char *exception_messages[] =
 {
     "Division By Zero",
     "Debug",

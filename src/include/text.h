@@ -7,6 +7,7 @@
 #ifndef TEXT_H
 #define TEXT_H
 
+#include "colors.h"
 #include "core.h"
 
 void put(char c);

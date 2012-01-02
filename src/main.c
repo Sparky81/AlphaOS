@@ -7,18 +7,24 @@
 #include "include/core.h"
 #include "include/text.h"
 #include "include/gdt.h"
+#include "include/idt.h"
+#include "include/isrs.h"
+#include "include/irq.h"
+#include "include/pit.h"
 void show_intro(void);
 
 
 int main(void) 
 { 
-  // init_descriptor_tables(); // Loads the IDT. 
+  clear();
+  show_intro();
   gdt_install();
   idt_install();
   isrs_install();
   irq_install();
-  clear();
-  show_intro();
+  timer_install();
+  kputs("What the hell");
+  for(;;);
   return 1;
 }
 

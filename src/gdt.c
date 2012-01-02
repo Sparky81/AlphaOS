@@ -74,3 +74,4 @@ void encodeGdtEntry(uint8_t *target, struct GDT source)
     // And... Type
     target[5] = source.type;
 }
+

@@ -253,7 +253,7 @@ void monitor_write_hex(u32int n)
     }
 
 }
-
+/*
 void monitor_write_dec(u32int n)
 {
     
@@ -283,7 +283,7 @@ void monitor_write_dec(u32int n)
     }
     kprintf(c2);
 }
-
+*/
 void kprint(char *c)
 {
   kprintf(c);

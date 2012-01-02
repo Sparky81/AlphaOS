@@ -13,9 +13,9 @@ void timer_phase(int hz)
 void timer_handler(struct regs *r)
 {
   timer_ticks++;
-  if (timer_ticks % 1 == 0)
+  if (timer_ticks % 18 == 0)
   {
-    kprint("One second has passed\n");
+    kputs("One second has passed");
   }
 }
 
@@ -28,4 +28,12 @@ void timer_install()
   kprintc(" ]\n", BLACK, LIGHT_MAGENTA);
  
   irq_install_handler(0, timer_handler);
+}
+
+void timer_wait(int ticks)
+{
+    unsigned long eticks;
+
+    eticks = timer_ticks + ticks;
+    while(timer_ticks < eticks);
 }

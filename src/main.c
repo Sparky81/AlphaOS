@@ -23,8 +23,10 @@ int main(void)
   isrs_install();
   irq_install();
   timer_install();
-  kputs("What the hell");
-  for(;;);
+  __asm__ __volatile__ ("sti");
+  timer_wait(10);
+  kputs("Hello world!");
+  for(;;); //Not sure if we need an infinite loop here. Lets test it out.
   return 1;
 }
 

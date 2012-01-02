@@ -17,4 +17,10 @@ void printf(char *c);
 
 void puts(char *c);
 
+void put_c(char c, u8int backColour, u8int foreColour);
+
+void printc(char *c, u8int bg, u8int fg);
+
+void error(char *c);
+
 #endif

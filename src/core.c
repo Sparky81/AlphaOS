@@ -77,7 +77,7 @@ int strcmp(char *str1, char *str2)
 // return dest.
 char *strcpy(char *dest, const char *src)
 {
-    while(*src)
+    while(*src != 0)
     {
        *dest++ = *src++;
     }
@@ -91,7 +91,7 @@ char *strcat(char *dest, const char *src)
     char *save = dest;
     for (; *dest; ++dest);
     while ((*dest++ = *src++) != 0);
-    return(save);
+    return save;
 }
 
 /* The correctness of this code is questionable */

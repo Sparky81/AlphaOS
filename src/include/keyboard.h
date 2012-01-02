@@ -2,6 +2,6 @@
 #define KEYBOARD_H
 
 void keyboard_handler(struct regs *r);
-void install_keyboard(void);
+void keyboard_install(void);
 
 #endif

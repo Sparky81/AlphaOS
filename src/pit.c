@@ -23,14 +23,8 @@ void timer_handler(struct regs *r)
 }
 
 void timer_install()
-{
-  kprintc(":: Installing ", BLACK, LIGHT_RED);
-  kprintc("IRQ Handler -> ", BLACK, GREEN);
-  kprintc("[ ", BLACK, LIGHT_MAGENTA);
-  kprintc("PIT", BLACK, LIGHT_CYAN);
-  kprintc(" ]\n", BLACK, LIGHT_MAGENTA);
- 
-  irq_install_handler(0, timer_handler);
+{ 
+  irq_install_handler(0, timer_handler, "PIT");
 }
 
 void timer_wait(int ticks)

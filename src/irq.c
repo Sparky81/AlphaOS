@@ -34,8 +34,13 @@ void *irq_routines[16] =
 };
 
 /* This installs a custom IRQ handler for the given IRQ */
-void irq_install_handler(int irq, void (*handler)(struct regs *r))
+void irq_install_handler(int irq, void (*handler)(struct regs *r), char *handler_name)
 {
+    kprintc(":: Installing ", BLACK, LIGHT_RED);
+    kprintc("IRQ Handler -> ", BLACK, GREEN);
+    kprintc("[ ", BLACK, LIGHT_MAGENTA);
+    kprintc(handler_name, BLACK, LIGHT_CYAN);
+    kprintc(" ]\n", BLACK, LIGHT_MAGENTA);
     irq_routines[irq] = handler;
 }
 

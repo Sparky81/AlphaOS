@@ -1,3 +1,8 @@
+/* AlphaOS v0.1
+ * Copyright (c) 2012, Robert Schofield and Matthew Carey
+ * All rights reserved.
+ */
+
 /* AlphaOS v1.0
  * text.c - handles text printing functions
  * Copyright (c) 2011, Robert Schofield and Matthew Carey

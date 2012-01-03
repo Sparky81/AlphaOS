@@ -1,6 +1,5 @@
-/* AlphaOS v1.0
- * main.c - beginning of the kernel
- * Copyright (c) 2011, Robert Schofield and Matthew Carey
+/* AlphaOS v0.1
+ * Copyright (c) 2012, Robert Schofield and Matthew Carey
  * All rights reserved.
  */
 
@@ -37,7 +36,7 @@ int main(void)
 void show_intro(void) 
 {
   kputs("AlphaOS Kernel - Version 1.0");
-  kputs("Copyright (c) 2011, Robert Schofield and Matthew Carey");
+  kputs("Copyright (c) 2012, Robert Schofield and Matthew Carey");
   kputs("All rights reserved.");
   kputs("\n\nKeyboard handling has just been added. Type anything to test it out.");
   return;

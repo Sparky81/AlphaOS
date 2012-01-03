@@ -1,6 +1,5 @@
-/* AlphaOS v1.0
- * core.h - defines typedefs and global functions
- * Copyright (c) 2011, Robert Schofield and Matthew Carey
+/* AlphaOS v0.1
+ * Copyright (c) 2012, Robert Schofield and Matthew Carey
  * All rights reserved.
  */
 

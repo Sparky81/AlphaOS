@@ -1,3 +1,8 @@
+/* AlphaOS v0.1
+ * Copyright (c) 2012, Robert Schofield and Matthew Carey
+ * All rights reserved.
+ */
+
 /* bkerndev - Bran's Kernel Development Tutorial
 *  By:   Brandon F. (friesenb@gmail.com)
 *  Desc: Interrupt Service Routines installer and exceptions

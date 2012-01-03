@@ -1,3 +1,8 @@
+/* AlphaOS v0.1
+ * Copyright (c) 2012, Robert Schofield and Matthew Carey
+ * All rights reserved.
+ */
+
 #ifndef IRQ_H
 #define IRQ_H
 

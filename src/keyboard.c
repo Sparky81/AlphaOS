@@ -152,12 +152,6 @@ void keyboard_handler(struct regs *r)
 
 void keyboard_install()
 {
-  kprintc(":: Installing ", BLACK, LIGHT_RED);
-  kprintc("IRQ Handler -> ", BLACK, GREEN);
-  kprintc("[ ", BLACK, LIGHT_MAGENTA);
-  kprintc("KEYBOARD", BLACK, LIGHT_CYAN);
-  kprintc(" ]\n", BLACK, LIGHT_MAGENTA);
-
-  irq_install_handler(1, keyboard_handler);
+  irq_install_handler(1, keyboard_handler, "Keyboard");
 }
 

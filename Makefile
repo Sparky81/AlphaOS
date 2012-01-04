@@ -1,6 +1,6 @@
 CC=gcc
 OBJECTS=build/objects/*.o
-SOURCES=src/main.c src/core.c src/text.c src/gdt.c src/idt.c src/isrs.c src/irq.c
+SOURCES=src/main.c src/core.c src/text.c src/gdt.c src/idt.c src/isrs.c src/irq.c src/pit.c src/paging.c
 EXECUTABLE=build/Kernel.bin
 CFLAGS= -fomit-frame-pointer -nostdlib -nostdinc -fno-builtin -fno-stack-protector -I$(IDIR)
 LDFLAGS=-Tsrc/link.ld -melf_i386
@@ -21,6 +21,7 @@ all:
 	@gcc -m32 -c src/isrs.c $(C_FLAGS) -o $(OBJDIR)/isrs.o
 	@gcc -m32 -c src/irq.c $(C_FLAGS) -o $(OBJDIR)/irq.o
 	@gcc -m32 -c src/pit.c $(C_FLAGS) -o $(OBJDIR)/pit.o
+	@gcc -m32 -c src/paging.c $(C_FLAGS) -o $(OBJDIR)/paging.o
 	@gcc -m32 -c src/keyboard.c $(C_FLAGS) -o $(OBJDIR)/kb.o
 	@nasm $(ASFLAGS) src/boot.asm -o $(OBJDIR)/boot.o
 	@ld $(LDFLAGS) -o build/Kernel.bin $(OBJECTS)

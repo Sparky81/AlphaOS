@@ -11,6 +11,7 @@
 #include "include/irq.h"
 #include "include/pit.h"
 #include "include/keyboard.h"
+#include "paging.c"
 
 void show_intro(void);
 
@@ -27,6 +28,7 @@ int main(void)
   keyboard_install();
   __asm__ __volatile__ ("sti");
   timer_wait(10);
+  init_paging();
   show_intro();
   //kputs("Hello world!");
   for(;;); //Not sure if we need an infinite loop here. Lets test it out.

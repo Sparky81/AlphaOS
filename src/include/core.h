@@ -3,8 +3,8 @@
  * All rights reserved.
  */
 
-#ifndef COMMON_H
-#define COMMON_H
+#ifndef CORE_H
+#define CORE_H
 
 // Some nice typedefs, to standardise sizes across platforms.
 // These typedefs are written for 32-bit X86.
@@ -36,4 +36,4 @@ struct regs
 };
 
 
-#endif // COMMON_H
+#endif // CORE_H

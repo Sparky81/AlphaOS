@@ -11,7 +11,7 @@
 #include "include/irq.h"
 #include "include/pit.h"
 #include "include/keyboard.h"
-#include "paging.c"
+#include "include/paging.h"
 
 void show_intro(void);
 

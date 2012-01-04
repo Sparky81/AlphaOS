@@ -39,8 +39,8 @@ debug:
 	@gcc -m32 -c src/isrs.c -Wall $(C_FLAGS) -o $(OBJDIR)/isrs.o
 	@gcc -m32 -c src/irq.c -Wall $(C_FLAGS) -o $(OBJDIR)/irq.o
 	@gcc -m32 -c src/pit.c -Wall $(C_FLAGS) -o $(OBJDIR)/pit.o
-	@gcc -m32 -c src/keyboard.c -Wall $(C_FLAGS) -o $(OBJDIR)/kb.o
 	@gcc -m32 -c src/paging.c -Wall $(C_FLAGS) -o $(OBJDIR)/paging.o
+	@gcc -m32 -c src/keyboard.c -Wall $(C_FLAGS) -o $(OBJDIR)/kb.o
 	@nasm $(ASFLAGS) src/boot.asm -o $(OBJDIR)/boot.o
 	@ld $(LDFLAGS) -o build/Kernel.bin $(OBJECTS)
 	@$(SAY) "\033[1mDone!\033[0m"

@@ -260,13 +260,12 @@ void monitor_write_hex(u32int n)
     }
 
 }
-/*
+
 void monitor_write_dec(u32int n)
 {
-    
     if (n == 0)
     {
-        put('0');
+        kprintf("0");
         return;
     }
 
@@ -290,7 +289,14 @@ void monitor_write_dec(u32int n)
     }
     kprintf(c2);
 }
-*/
+
+/* Added a dummy version of this function to trick the compiler.
+ * This issue is being looked into, this is just a quick fix. */
+void __stack_chk_fail(void)
+{
+  return;
+}
+
 void kprint(char *c)
 {
   kprintf(c);

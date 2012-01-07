@@ -291,7 +291,12 @@ void monitor_write_dec(u32int n)
 }
 
 /* Added a dummy version of this function to trick the compiler.
- * This issue is being looked into, this is just a quick fix. */
+ * When compiling without this written here, the compiler gave an 
+ * error code stating that __stack_chk_fail was undefined. Even 
+ * though this is never called in the actual program, the compiler
+ * still thought it was... Not quite sure why this is happening, but
+ * having the function below here is a quick workaround. This issue
+ * will eventually be fixed.    */
 void __stack_chk_fail(void)
 {
   return;

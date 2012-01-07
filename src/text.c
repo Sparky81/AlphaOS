@@ -42,7 +42,7 @@ static void scroll()
         // Move the current text chunk that makes up the screen
         // back in the buffer by a line
         int i;
-        for (i = 0*80; i < 24*80; i++)
+        for (i = 1*80; i < 24*80; i++)
         {
             video_memory[i] = video_memory[i+80];
         }
@@ -209,6 +209,8 @@ void kprintf(char *c)
     }
 }
 
+/* Syntax: 
+ * kprintc("Text to print", BackgroundColor, ForegroundColor);  */
 void kprintc(char *c, u8int bg, u8int fg)
 {
     int i = 0;

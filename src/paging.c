@@ -1,3 +1,14 @@
+/* AlphaOS v0.1
+ * Copyright (c) 2012, Robert Schofield and Matthew Carey
+ * All rights reserved.
+ */
+
+/* NOTICE:
+ * This code was taken from James Molloy's kernel development tutorial.
+ * Website: http://jamesmolloy.co.uk/tutorial_html/
+ * Our own version will eventually be written and implemented, this is 
+ * currently being used solely for the purpose of testing. */
+
 // paging.c -- Defines the interface for and structures relating to paging.
 //             Written for JamesM's kernel development tutorials.
 
@@ -16,7 +27,7 @@ page_directory_t *current_directory=0;
 u32int *frames;
 u32int nframes;
 
-// Defined in kheap.c
+// Defined in kheap.c AlphaOS
 extern u32int placement_address;
 
 // Macros used in the bitset algorithms.
@@ -206,5 +217,5 @@ void page_fault(struct regs regist)
                                            reserved, "reserved",
                                            faulting_address);
 
-    DIE("Page fault");
+    die("Page fault");
 }

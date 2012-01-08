@@ -31,6 +31,7 @@ int main(void)
   init_paging();
   timer_wait(20);
   show_intro();
+  DIE("This is a test of die(), you wont really die this time though.");
   //kputs("Hello world!");
   for(;;); //Not sure if we need an infinite loop here. Lets test it out.
   return 1;

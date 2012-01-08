@@ -25,6 +25,6 @@ void kprintc(char *c, u8int bg, u8int fg);
 
 void error(char *c);
 
-void kprintf(char const *fmt, ...);
+void kprintf(char *fmt, ...);
 
 #endif

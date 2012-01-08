@@ -104,6 +104,6 @@ int strlen(char *str)
 
 void die(char *msg, char *file, u32int line)
 {
-  kprintf("\nError in %c at %d\nReason: %s\n", file, line, msg);
+  kprintf("Error in %c at %d\nReason: %s\n", file, line, msg);
 }
 

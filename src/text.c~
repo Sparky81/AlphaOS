@@ -323,7 +323,7 @@ void error(char *c)
 
 #endif
 
-void kprintf(char const *fmt, ...)
+void kprintf(char *fmt, ...)
 {
   va_list args;
   va_start(args, *fmt);

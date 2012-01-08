@@ -337,7 +337,7 @@ void kprintf(char const *fmt, ...)
          if(state == 1)
          {
            put('%');
-           state--;
+           state = 0;
          }
          else
          {
@@ -354,7 +354,7 @@ void kprintf(char const *fmt, ...)
              put('-');
            }
            monitor_write_dec(arg);
-           state--;
+           state = 0;
          }
          else
          {
@@ -373,7 +373,7 @@ void kprintf(char const *fmt, ...)
          if(state == 1)
          {
            put((char )va_arg(args, int));
-           state--;
+           state = 0;
          }
          else
          {
@@ -385,11 +385,54 @@ void kprintf(char const *fmt, ...)
          if(state == 1)
          {
            kprint((char *)va_arg(args, char *));
-           state--;
+           state = 0;
          }
          else
          {
            put('s');
+         }
+    }
+    else if(chr == 'x')
+    {
+         if(state == 1)
+         {
+           monitor_write_hex((u32int)va_arg(args, u32int));
+           state = 0;
+         }
+         else
+         {
+           put('x');
+         }
+    }
+    else if(chr == 'X')
+    {
+         if(state == 1)
+         {
+           monitor_write_hex((u32int)va_arg(args, u32int));
+           state = 0;
+         }
+         else
+         {
+           put('X');
+         }
+    }
+    else if(chr == '?')
+    {
+         if(state == 1)
+         {
+           char *temp__ = (char *)va_arg(args, char *);
+           if((bool)va_arg(args, bool))
+           {
+             kprint(temp__);
+           }
+           else
+           {
+           }
+           state = 0;
+         }
+         else
+         {
+           put('?');
          }
     }
     else

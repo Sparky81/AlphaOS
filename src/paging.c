@@ -12,6 +12,16 @@
 
 #include "include/core.h"
 #include "include/text.h"
+#include "include/pit.h"
+
+extern void write_cr3(unsigned long);
+extern void write_cr0(unsigned long);
+extern void read_cr3();
+/*
+  extern void read_cr0(); Enabling this produces an error with it not ignoring void as it should... That 
+  makes minimal sense.. 
+*/
+
 
 void init_paging() 
 { 
@@ -37,8 +47,8 @@ void init_paging()
 	}; 
  
 	// write_cr3, read_cr3, write_cr0, and read_cr0 all come from the assembly functions 
-	write_cr3(page_directory); // put that page directory address into CR3 
-	write_cr0(read_cr0() | 0x80000000); // set the paging bit in CR0 to 1 
+	write_cr3((unsigned long)page_directory); // put that page directory address into CR3 
+	write_cr0( read_cr0() | 0x80000000); // set the paging bit in CR0 to 1 
 	
 	kprintc("\nInitializing Paging... ", BLACK, LIGHT_BROWN); 
 	timer_wait(10); 

@@ -13,7 +13,7 @@ void put(char c);
 
 void clear();
 
-void kprintf(char *c);
+void kprint(char *c);
 
 void kputs(char *c);
 
@@ -24,5 +24,7 @@ void print(char c);
 void kprintc(char *c, u8int bg, u8int fg);
 
 void error(char *c);
+
+void kprintf(char *fmt, ...);
 
 #endif

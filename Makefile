@@ -7,7 +7,7 @@ LDFLAGS=-Tsrc/link.ld -melf_i386
 ASFLAGS=-felf
 IDIR=src/include
 OBJDIR=build/objects
-SAY=echo -e
+SAY=echo
 
 all:
 	@mkdir -p build

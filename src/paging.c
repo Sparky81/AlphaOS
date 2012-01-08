@@ -217,5 +217,5 @@ void page_fault(struct regs regist)
                                            reserved, "reserved",
                                            faulting_address);
 
-    die("Page fault");
+    DIE("Page fault.");
 }

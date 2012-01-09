@@ -16,6 +16,8 @@ u16int *video_memory = (u16int *)0xB8000;
 // Stores the cursor position.
 u8int cursor_x = 0;
 u8int cursor_y = 0;
+u8int previous_cursor_x = 0;
+u8int previous_cursor_y = 0;
 
 // Updates the hardware cursor.
 static void move_cursor()
@@ -28,6 +30,16 @@ static void move_cursor()
     outportb(0x3D5, cursorLocation);      // Send the low cursor byte.
 }
 
+void set_cursor_point(u8int x, u8int y)
+{
+  previous_cursor_x = cursor_x;
+  previous_cursor_y = cursor_y;
+  cursor_x = x;
+  cursor_y = y;
+}
+/* For this function, keep in mind that the screen is 80 wide and 24 long (because of the 
+ * banner at the top). */
+
 // Scrolls the text on the screen up by one line.
 static void scroll()
 {
@@ -37,24 +49,24 @@ static void scroll()
     u16int blank = 0x20 /* space */ | (attributeByte << 8);
 
     // Row 25 is the end, this means we need to scroll up
-    if(cursor_y >= 25)
+    if(cursor_y >= 24)
     {
         // Move the current text chunk that makes up the screen
         // back in the buffer by a line
         int i;
-        for (i = 1*80; i < 24*80; i++)
+        for (i = 1*80; i < 23*80; i++)
         {
             video_memory[i] = video_memory[i+80];
         }
 
         // The last line should now be blank. Do this by writing
         // 80 spaces to it.
-        for (i = 24*80; i < 25*80; i++)
+        for (i = 23*80; i < 24*80; i++)
         {
             video_memory[i] = blank;
         }
         // The cursor should now be on the last line.
-        cursor_y = 24;
+        cursor_y = 23;
     }
 }
 
@@ -110,8 +122,10 @@ void put_c(char c, u8int backColour, u8int foreColour)
         cursor_y ++;
     }
 
-    // Scroll the screen if needed.
-    scroll();
+    /* NOTICE: This was commented to allow the print_to_point function to work
+     * properly. This needs to be fixed! */
+    // scroll();
+    
     // Move the hardware cursor.
     move_cursor();
 
@@ -218,6 +232,14 @@ void kprintc(char *c, u8int bg, u8int fg)
     {
       put_c(c[i++], bg, fg);
     }
+}
+
+void print_to_point(char *text, u8int column, u8int line, u8int backColor, u8int foreColor)
+{
+  set_cursor_point(column-1, line-1);
+  kprintc(text, backColor, foreColor);
+  set_cursor_point(previous_cursor_x, previous_cursor_y);
+  put(0x20); put(0x08);
 }
 
 void monitor_write_hex(u32int n)
@@ -442,3 +464,4 @@ void kprintf(char const *fmt, ...)
   }
   va_end(args);
 }
+

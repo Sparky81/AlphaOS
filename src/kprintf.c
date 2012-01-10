@@ -75,3 +75,90 @@ void kprintf(char *fmt, ...)
   }
   va_end(args);
 }
+
+void kprintfc(char const *fmt, ...)
+{
+  va_list args;
+  va_start(args, *fmt);
+  int state = 0;
+  int bg    = BLACK;
+  int fg    = WHITE;
+  for(; fmt != 0; fmt++)
+  {
+    switch(fmt)
+    {
+      case '%':
+           if(state == 1)
+          {
+            put_c('%', bg, fg);
+          }
+          else
+          {
+            state++;
+          }
+          break;
+      case 'F':
+           if(state == 1)
+           {
+             fg = va_arg(args, int);
+             state--;
+           }
+           else
+           {
+             put_c('F', bg, fg);
+           }
+           break;
+      case 'B':
+           if(state == 1)
+           {
+             bg = va_arg(args, int);
+             state--;
+           }
+           else
+           {
+             put_c('B', bg, fg);
+           }
+           break;
+      default:
+           put_c(*fmt, bg, fg);
+           break;
+    }
+  }
+  va_end(args);
+}
+
+char *sprintf(char *str, char const *fmt, ...)
+{
+  va_list args;
+  va_start(args, *fmt);
+  int state;
+  for(; fmt != 0; fmt++)
+  {
+    switch(fmt)
+    {
+      case '%':
+           if(state == 1)
+           {
+             str++ = '%';
+             state--;
+           }
+           else
+           {
+             state++;
+           }
+           break;
+      case 's':
+           if(state == 1)
+           {
+             char *tmp = va_arg(args, char *);
+             for(; tmp != '\0'; tmp++) str++ = tmp;
+           }
+           else
+           {
+             str++ = 's';
+           }
+    }
+  }
+  str = '\0';
+  return str;
+}

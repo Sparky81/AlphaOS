@@ -9,6 +9,7 @@
 #define va_end(x) __builtin_va_end(x)
 
 #endif
+char num[] = {'0','1','2','3','4','5','6','7','8','9'};
 
 void kprintf(char *fmt, ...)
 {
@@ -157,6 +158,21 @@ char *sprintf(char *str, char const *fmt, ...)
            {
              str++ = 's';
            }
+           break;
+      case 'd':
+           if(state = 1)
+          /* {
+             int temp = va_arg(args, int);
+             for(; temp != 0;)
+             {
+                 if(temp < 10)
+                {
+                    str++ = num[temp];
+                    temp
+                }
+             }
+           }*/
+           break;
     }
   }
   str = '\0';

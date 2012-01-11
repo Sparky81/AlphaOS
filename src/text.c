@@ -54,14 +54,14 @@ static void scroll()
         // Move the current text chunk that makes up the screen
         // back in the buffer by a line
         int i;
-        for (i = 1*80; i < 22*80; i++)
+        for (i = 1*80; i < 23*80; i++)
         {
             video_memory[i] = video_memory[i+80];
         }
 
         // The last line should now be blank. Do this by writing
         // 80 spaces to it.
-        for (i = 22*80; i < 23*80; i++)
+        for (i = 23*80; i < 24*80; i++)
         {
             video_memory[i] = blank;
         }
@@ -465,3 +465,78 @@ void kprintf(char const *fmt, ...)
   va_end(args);
 }
 
+char *sprintf(char *str, char const *fmt, ...)
+{
+  char *save = str;
+  va_list args;
+  va_start(args, *fmt);
+  static int state;
+  for(; *fmt != 0; *fmt++)
+  {
+    switch(*fmt)
+    {
+      case '%':
+           if(state == 1)
+           {
+             *str++ = '%';
+             state--;
+           }
+           else
+           {
+             state++;
+           }
+           break;
+      case 's':
+           if(state == 1)
+           {
+             char *tmp = va_arg(args, char *);
+             while ((*str++ = *tmp++) != 0);
+           }
+           else
+           {
+             *str++ = 's';
+           }
+           break;
+      case 'd':
+           if(state == 1)
+           {
+              char *temp;
+              itoa(va_arg(args, int), temp, 10);
+              while(temp != '\0') *str++ = *temp++;
+           }
+	   else 
+	   {
+	     *str++ = 'd';
+	   }
+           break;
+      case 'x':
+	if(state == 1)
+	  {
+            char *temp;
+	    itoa(va_arg(args, int), temp, 16);
+            while(temp != '\0') *str++ = *temp++;
+	  }
+        else
+	  {
+            *str++ = 'x';
+	  }
+	break;
+      case 'c':
+	if(state == 1)
+	  {
+	    *str++ = va_arg(args, int);
+	  }
+	else
+	  {
+	    *str++ = 'c';
+	  }
+	break;
+      default:
+	*str++ = *fmt;
+    }
+    kprintf("state: %d", state);
+  }
+  str = '\0';
+  va_end(args);
+  return save;
+}

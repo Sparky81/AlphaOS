@@ -27,4 +27,6 @@ void error(char *c);
 
 void kprintf(char const *fmt, ...);
 
+char *sprintf(char *str, char const *fmt, ...);
+
 #endif

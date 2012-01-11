@@ -25,7 +25,7 @@ char *strcpy(char *dest, const char *src);
 char *strcat(char *dest, const char *src);
 int strlen(char *str);
 void die(char *msg, char *file, u32int line);
-
+char *itoa(int value, char *str, int radix);
 /* This defines what the stack looks like after an ISR was running */
 struct regs
 {

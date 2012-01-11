@@ -130,6 +130,7 @@ void kprintfc(char const *fmt, ...)
 
 char *sprintf(char *str, char const *fmt, ...)
 {
+  char *save = str;
   va_list args;
   va_start(args, *fmt);
   int state;
@@ -160,21 +161,44 @@ char *sprintf(char *str, char const *fmt, ...)
            }
            break;
       case 'd':
-           if(state = 1)
-          /* {
-             int temp = va_arg(args, int);
-             for(; temp != 0;)
-             {
-                 if(temp < 10)
-                {
-                    str++ = num[temp];
-                    temp
-                }
-             }
-           }*/
+           if(state == 1)
+           {
+              char *temp;
+              itoa(va_arg(args, int), temp, 10);
+              while(temp != '\0') str++ = temp++;
+           }
+	   else 
+	   {
+	     str++ = 'd';
+	   }
            break;
+      case 'x':
+	if(state == 1)
+	  {
+            char *temp;
+	    itoa(va_arg(args, int), temp, 16);
+            while(temp != '\0') str++ = temp++;
+	  }
+        else
+	  {
+            str++ = 'x';
+	  }
+	break;
+      case 'c':
+	if(state == 1)
+	  {
+	    str++ = va_arg(args, char);
+	  }
+	else
+	  {
+	    str++ = 'c';
+	  }
+	break;
+      default:
+	str++ = fmt;
     }
   }
   str = '\0';
-  return str;
+  va_end(args);
+  return save;
 }

@@ -31,6 +31,10 @@ int main(void)
   init_paging();
   timer_wait(20);
   show_intro();
+  char *test;
+  sprintf(test, "LoL %s", "hi");
+  kprintf("String Length: %d\n", strlen(test));
+  kprint(test);
   print_to_point("Status bar: Will include information about HDD usage, RAM usage, etc.           ", 1, 25, BLUE, WHITE);
   //kputs("Hello world!");
   for(;;); //Not sure if we need an infinite loop here. Lets test it out.

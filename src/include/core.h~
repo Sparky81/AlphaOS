@@ -42,7 +42,7 @@ typedef int bool;
 #ifndef STRING
 #define STRING
 
-typedef char * string;
+typedef string char *;
 
 #endif
 

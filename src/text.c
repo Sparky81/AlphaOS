@@ -11,6 +11,7 @@
 
 #include "include/text.h"
 #include "include/colors.h"
+
 // The VGA framebuffer starts at 0xB8000.
 u16int *video_memory = (u16int *)0xB8000;
 // Stores the cursor position.

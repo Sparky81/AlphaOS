@@ -31,10 +31,6 @@ int main(void)
   init_paging();
   timer_wait(20);
   show_intro();
-  char *test;
-  sprintf(test, "LoL %s", "hi");
-  kprintf("String Length: %d\n", strlen(test));
-  kprint(test);
   print_to_point("Status bar: Will include information about HDD usage, RAM usage, etc.           ", 1, 25, BLUE, WHITE);
   //kputs("Hello world!");
   for(;;); //Not sure if we need an infinite loop here. Lets test it out.
@@ -44,11 +40,9 @@ int main(void)
 void show_intro(void) 
 {
   clear();
-  //kputs("AlphaOS Kernel - Version 1.0");
-  kprintc("AlphaOS Kernel - Version 0.1                                                    ", BLUE, WHITE);
+  kprintfc("%B%FAlphaOS Kernel - Version 0.1                                                    ", BLUE, WHITE);
   kputs("Copyright (c) 2012, Robert Schofield and Matthew Carey");
   kputs("All rights reserved.");
   kputs("\n\nKeyboard handling has just been added. Type anything to test it out.");
-  //I used kprintf just to show that it works - Matt C
   return;
 }

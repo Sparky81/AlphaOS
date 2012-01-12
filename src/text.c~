@@ -534,7 +534,6 @@ char *sprintf(char *str, char const *fmt, ...)
       default:
 	*str++ = *fmt;
     }
-    kprintf("state: %d", state);
   }
   str = '\0';
   va_end(args);

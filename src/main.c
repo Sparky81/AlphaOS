@@ -40,11 +40,9 @@ int main(void)
 void show_intro(void) 
 {
   clear();
-  //kputs("AlphaOS Kernel - Version 1.0");
   kprintc("AlphaOS Kernel - Version 0.1                                                    ", BLUE, WHITE);
   kputs("Copyright (c) 2012, Robert Schofield and Matthew Carey");
   kputs("All rights reserved.");
   kputs("\n\nKeyboard handling has just been added. Type anything to test it out.");
-  //I used kprintf just to show that it works - Matt C
   return;
 }

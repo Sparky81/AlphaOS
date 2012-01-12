@@ -9,11 +9,14 @@ ___Copyright (c) 2011, Robert Schofield and Matthew Carey___
 **Read the above before using this code, in development or in testing of AlphaOS.**
 
 Contact Information:
-+ Email: <mailto:Sparky@AlphaChat.net>
-+ Email: <mailto:matthew.b.carey@gmail.com>
-+ IRC Network: AlphaChat 
-+ Host: [irc.alphachat.net](irc://irc.alphachat.net:6667)
-+ Project Channel: #AlphaOS
+
+> Robert  S.: <mailto:rjschofield81@gmail.com>
+> <br />Matthew C.: <mailto:matthew.b.carey@gmail.com>
+
+> IRC Network: AlphaChat 
+> <br />Host: [irc.alphachat.net](irc://irc.alphachat.net:6667)
+> <br />Project Channel: #AlphaOS
+
 -----------------------------------------------------------------------------------------------------------------------
 
 ### I. About

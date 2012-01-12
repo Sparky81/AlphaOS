@@ -28,12 +28,12 @@ Contact Information:
 >  create our own bootloader, and allow the usage of grub with it as well.
 
   To build the kernel:
-  ====================
+======================
     
         make
     
   To test it out:
-  ===============
+=================
     
         qemu -kernel build/Kernel.bin
     

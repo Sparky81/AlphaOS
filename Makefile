@@ -53,12 +53,12 @@ clean:
 	@$(SAY) "\033[1mDone!\033[0m"
 
 cleaner:
-	@rm *~
+	@rm ./*~
 	@rm src/*~
 	@rm src/include/*~
 
 cleanest:
 	@rm -rf build/
-	@rm *~
+	@rm ./*~
 	@rm src/*~
 	@rm src/include/*~

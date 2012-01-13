@@ -50,5 +50,4 @@ debug:
 
 clean:
 	@rm -rf build/
-	@rm -rf ./*~
 	@$(SAY) "\033[1mDone!\033[0m"

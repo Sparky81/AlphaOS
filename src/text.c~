@@ -465,9 +465,9 @@ void kprintf(char const *fmt, ...)
     {
          if(state == 1)
          {
-           double tmp__ = va_arg(args, double);
+           float tmp__ = (float)va_arg(args, double);
            char *tmmmp;
-           kprint(dtostr(tmp__, tmmmp, 0));
+           kprint(ftostr(tmp__, tmmmp, 2, 'f'));
          }
          else
          {

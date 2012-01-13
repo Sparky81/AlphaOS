@@ -218,27 +218,20 @@ char *dtostr(double db, char *str, int prec)
   int str_len = strlen(int_str);  // ^ 5
   while(str_len != dec++) *str_++ = *int_str++;
   *str_++ = '.';
-  if(prec == -1) {
+  if(prec == 0) {
     while(*int_str++ != '\0') *str_++ = *int_str;
   }
   else
   {
-    if(prec == 0)
+    for(; prec != 0; prec--)
     {
-      *str_++ = '0';
-    }
-    else
-    {
-      for(; prec != 0; prec--)
+      if(*int_str == '\0')
       {
-        if(*int_str == '\0')
-        {
-          *str_++ = '0';
-        }
-        else
-        {
-          *str_++ = *int_str++;
-        }
+        *str_++ = '0';
+      }
+      else
+      {
+        *str_++ = *int_str++;
       }
     }
   }

@@ -31,7 +31,7 @@ char *strcat(char *dest, const char *src);
 int strlen(char *str);
 void die(char *msg, char *file, u32int line);
 char *itoa(int value, char *str, int radix);
-char *dtostr(double db, char *str, int prec);
+char *ftostr(float x, char *str, int prec, char format);
 /* This defines what the stack looks like after an ISR was running */
 struct regs
 {

@@ -24,6 +24,7 @@ all:
 	@gcc -m32 -c src/malloc.c $(C_FLAGS) -o $(OBJDIR)/malloc.o
 	@gcc -m32 -c src/paging.c $(C_FLAGS) -o $(OBJDIR)/paging.o
 	@gcc -m32 -c src/keyboard.c $(C_FLAGS) -o $(OBJDIR)/kb.o
+	@gcc -m32 -c src/time.c $(C_FLAGS) -o $(OBJDIR)/time.o
 	@nasm $(ASFLAGS) src/boot.asm -o $(OBJDIR)/boot.o
 	@ld $(LDFLAGS) -o build/Kernel.bin $(OBJECTS)
 	@$(SAY) "\033[1mDone!\033[0m"

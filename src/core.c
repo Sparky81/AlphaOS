@@ -146,56 +146,6 @@ double modulus(double a, double b)
   return a - (double)( result ) * b;
 }
 
-
-/*char *ftostr(float flt, char *str, int prec) //Float, precision
-{
-  char *save;
-  int dec_plc = 0;
-  float flt_temp = flt;
-  char *str_temp;
-  static bool the_end = false;
-  for(;modulus(flt_temp, 1.0) != 0; dec_plc++) flt_temp *= 10; //We now know when to place the decimal.
-  itoa((int)flt_temp, str_temp, 10); //If flt_temp started as 13.37 it is now in str_temp as "1337"
-  int len = strlen(str_temp);
-  kprintf("%d\n", dec_plc);
-  str = "Hello there";
-  for(; len != dec_plc; len--){
-   kprintf(": %s\n",str_temp);
-   kprintf("; %s\n", save);
-   *str++ = *str_temp++;
-  }
-  kprintf("Here it is: %d",str);
-  *str++ = '.';
-  if(prec == 0) goto no_prec; 
-  for(; prec != 0; prec--)
-  {
-     if(the_end == true)
-     {
-        *str++ = '0';
-     }
-     else
-     {
-        if(*str_temp == '\0')
-        {
-            the_end = true;
-            *str++ = '0';
-        }
-        else
-        {
-            *str++ = *str_temp++;
-        }
-     }
-  }
-  goto end;
-no_prec:
-  for(;*str_temp != '\0'; *str++ = *str_temp++);
-  goto end;
-end:
-  *str = '\0';
-  return save;
-} */
-
-
 char *dtostr(double db, char *str, int prec)
 {
   char *str_;
@@ -244,8 +194,5 @@ char *dtostr(double db, char *str, int prec)
   }
   *str_ = '\0';
   str = save;
-  kprint(save);
-  kprint("\n");
-  kprint(str);
   return save;
 }

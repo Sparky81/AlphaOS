@@ -19,17 +19,16 @@ typedef struct time_ {
 } Time;
 #endif
 
-char *readCMOS(char *addr)
+unsigned char readCMOS(unsigned char addr)
 {
-  char *save;
+
   outportb(0x70, addr);
   __asm__ __volatile__("jmp 1f; 1: jmp 1f; 1:"); //So this code is from microsea, and it seems stupid
-  save = inportb(0x71);                          //however its much more readable and useable than the
+   addr = inportb(0x71);                          //however its much more readable and useable than the
   __asm__ __volatile__("jmp 1f; 1: jmp 1f; 1:"); //OSDev example
-  return save;
 }
 
-void writeCMOS(char *addr, unsigned int val)
+void writeCMOS(unsigned char addr, unsigned int val)
 {
   outportb(0x70, addr);
   __asm__ __volatile__("jmp 1f; 1: jmp 1f;1:");
@@ -41,12 +40,12 @@ Time current_time()
 {
   __asm__("cli");
   Time *t;
-  t->sec   = b2b(readCMOS(0x0));
-  t->min   = b2b(readCMOS(0x2));
-  t->hour  = b2b(readCMOS(0x4));
-  t->day   = b2b(readCMOS(0x7));
-  t->month = b2b(readCMOS(0x8));
-  t->year  = b2b(readCMOS(0x9));
+  t->sec   = (int)b2b(readCMOS(0x0));
+  t->min   = (int)b2b(readCMOS(0x2));
+  t->hour  = (int)b2b(readCMOS(0x4));
+  t->day   = (int)b2b(readCMOS(0x7));
+  t->month = (int)b2b(readCMOS(0x8));
+  t->year  = (int)b2b(readCMOS(0x9));
   __asm__("sti");
   return *t;
 }

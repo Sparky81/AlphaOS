@@ -12,6 +12,7 @@
 #include "include/pit.h"
 #include "include/keyboard.h"
 #include "include/paging.h"
+#include "include/time.h"
 #define DIE(msg) die(msg, __FILE__, __LINE__)
 void show_intro(void);
 
@@ -33,6 +34,8 @@ int main(void)
   show_intro();
   print_to_point("Status bar: Will include information about HDD usage, RAM usage, etc.           ", 1, 25, BLUE, WHITE);
   //kputs("Hello world!");
+  Time tm = current_time();
+  kprintf("%d:%d:%d\n", tm.hour, tm.min, tm.sec);
   for(;;); //Not sure if we need an infinite loop here. Lets test it out.
   return 1;
 }

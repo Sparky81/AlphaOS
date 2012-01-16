@@ -33,9 +33,8 @@ int main(void)
   timer_wait(20);
   show_intro();
   print_to_point("Status bar: Will include information about HDD usage, RAM usage, etc.           ", 1, 25, BLUE, WHITE);
-  //kputs("Hello world!");
-  Time tm = current_time();
-  kprintf("%d:%d:%d\n", tm.hour, tm.min, tm.sec);
+  //Time tm = current_time();
+  //kprintf("%d:%d:%d\n", tm.hour, tm.min, tm.sec);
   for(;;); //Not sure if we need an infinite loop here. Lets test it out.
   return 1;
 }

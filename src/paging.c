@@ -154,20 +154,14 @@ void init_paging()
     switch_page_directory((page_directory_t *)kernel_directory);
 }
 
-extern void write_cr3(unsigned long);
-extern void write_cr0(unsigned long);
-extern unsigned int read_cr0(void);
-
 void switch_page_directory(page_directory_t *dir)
 {
     current_directory = dir;
-    write_cr3(*dir->tablesPhysical);
-    //write_cr0(read_cr0() | 0x80000000);
-    //__asm__ __volatile__("mov %0, %%cr3":: "b"(&dir->tablesPhysical));
-    //unsigned int cr0;
-    //asm volatile("mov %%cr0, %0": "=b"(cr0));
-    //cr0 |= 0x80000000;
-    //asm volatile("mov %0, %%cr0":: "b"(cr0));
+    asm volatile("mov %0, %%cr3":: "r"(&(dir->tablesPhysical)));
+    u32int cr0;
+    asm volatile("mov %%cr0, %0": "=r"(cr0));
+    cr0 |= 0x20000000; // Enable paging!
+    asm volatile("mov %0, %%cr0":: "r"(cr0));
 }
 
 page_t *get_page(u32int address, int make, page_directory_t *dir)

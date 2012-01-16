@@ -160,7 +160,7 @@ void switch_page_directory(page_directory_t *dir)
     asm volatile("mov %0, %%cr3":: "r"(&(dir->tablesPhysical)));
     u32int cr0;
     asm volatile("mov %%cr0, %0": "=r"(cr0));
-    cr0 |= 0x20000000; // Enable paging!
+    cr0 |= 0x10000000; // Enable paging!
     asm volatile("mov %0, %%cr0":: "r"(cr0));
 }
 

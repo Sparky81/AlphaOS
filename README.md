@@ -24,8 +24,7 @@ Contact Information:
 >  Matthew Carey, as a way to experiment with our knowledge in the different
 >  programming languages, like Assembly, C, and C++.  It currently is in the
 >  very early stages of development and does not have a bootloader yet that 
->  works with a disk. This will change in the coming months, as we will 
->  create our own bootloader, and allow the usage of grub with it as well.
+>  works with a disk. 
 
   To build the kernel:
 ======================
@@ -37,3 +36,7 @@ Contact Information:
     
         qemu -kernel build/Kernel.bin
     
+  To build and test the kernel:
+===============================
+
+	./run.sh

@@ -1,6 +1,6 @@
 CC=gcc
 OBJECTS=build/objects/*.o
-SOURCES=src/main.c src/core.c src/text.c src/gdt.c src/idt.c src/isrs.c src/irq.c src/pit.c src/paging.c
+SOURCES=src/main.c src/core.c src/text.c src/gdt.c src/idt.c src/isrs.c src/irq.c src/pit.c src/paging.c src/memory.c
 EXECUTABLE=build/Kernel.bin
 CFLAGS= -fno-stack-protector -fomit-frame-pointer -nostdlib -nostdin -I$(IDIR) -O2
 LDFLAGS=-Tsrc/link.ld -melf_i386
@@ -25,6 +25,7 @@ all:
 	@gcc -m32 -c src/paging.c $(C_FLAGS) -o $(OBJDIR)/paging.o
 	@gcc -m32 -c src/keyboard.c $(C_FLAGS) -o $(OBJDIR)/kb.o
 	@gcc -m32 -c src/time.c $(C_FLAGS) -o $(OBJDIR)/time.o
+	@gcc -m32 -c src/memory.c $(C_FLAGS) -o $(OBJDIR)/memory.o
 	@nasm $(ASFLAGS) src/boot.asm -o $(OBJDIR)/boot.o
 	@ld $(LDFLAGS) -o build/Kernel.bin $(OBJECTS)
 	@$(SAY) "\033[1mDone!\033[0m"

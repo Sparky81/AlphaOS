@@ -13,10 +13,13 @@
 #include "include/keyboard.h"
 #include "include/paging.h"
 #include "include/time.h"
+#include "include/multiboot.h"
 #define DIE(msg) die(msg, __FILE__, __LINE__)
 void show_intro(void);
 
-void main(void) 
+struct multiboot *mtboot;
+
+void main(struct multiboot *mboot_header, u32int initial_stack) 
 { 
   clear();
   gdt_install();
@@ -25,10 +28,10 @@ void main(void)
   irq_install();
   timer_install();
   keyboard_install();
-  __asm__ __volatile__ ("sti");
-  timer_wait(10);
   init_paging();
-  timer_wait(20);
+  init_memory(mtboot);
+  __asm__ __volatile__ ("sti");
+  timer_wait(15);;
   show_intro();
   print_to_point("Status bar: Will include information about HDD usage, RAM usage, etc.           ", 1, 25, BLUE, WHITE);
   //Time tm = current_time();

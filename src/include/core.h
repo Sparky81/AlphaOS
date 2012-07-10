@@ -14,6 +14,18 @@ typedef unsigned short u16int;
 typedef          short s16int;
 typedef unsigned char  u8int;
 typedef          char  s8int;
+
+typedef unsigned int   uint32_t;
+typedef          int   sint32_t;
+typedef unsigned long long   uint64_t;
+typedef          long long   sint64_t;
+typedef unsigned short uint16_t;
+typedef          short sint16_t;
+typedef unsigned char  uint8_t;
+typedef          char  sint8_t;
+typedef unsigned int    intptr_t;
+typedef long off_t;
+
 typedef char *string;
 typedef int bool;
 typedef char *ptr;
